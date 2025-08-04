@@ -364,6 +364,11 @@ async def download_attendance_csv(class_id: str, start_date: str, end_date: str,
     
     # Get students and attendance data
     students = await db.students.find({"class_id": class_id}).to_list(1000)
+    
+    # Convert string dates to date objects for comparison
+    start_date_obj = datetime.strptime(start_date, "%Y-%m-%d").date()
+    end_date_obj = datetime.strptime(end_date, "%Y-%m-%d").date()
+    
     attendance_records = await db.attendance.find({
         "class_id": class_id,
         "date": {"$gte": start_date, "$lte": end_date}
@@ -375,8 +380,8 @@ async def download_attendance_csv(class_id: str, start_date: str, end_date: str,
     
     # Header
     date_range = []
-    current_date = start_date
-    while current_date <= end_date:
+    current_date = start_date_obj
+    while current_date <= end_date_obj:
         date_range.append(current_date.strftime("%Y-%m-%d"))
         current_date += timedelta(days=1)
     
