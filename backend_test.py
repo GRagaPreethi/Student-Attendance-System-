@@ -98,9 +98,14 @@ class AttendanceSystemTester:
         """Test user login with valid credentials"""
         print("\n=== Testing User Login ===")
         
+        # Get the current email addresses from registration
+        if not self.admin_user or not self.teacher_user:
+            self.log_result("Login Test Setup", False, "Missing user data from registration")
+            return
+        
         # Test admin login
         admin_login = {
-            "email": "sarah.johnson@school.edu",
+            "email": self.admin_user["email"],
             "password": "SecurePass123!"
         }
         
@@ -120,7 +125,7 @@ class AttendanceSystemTester:
 
         # Test teacher login
         teacher_login = {
-            "email": "michael.chen@school.edu",
+            "email": self.teacher_user["email"],
             "password": "TeacherPass456!"
         }
         
@@ -140,7 +145,7 @@ class AttendanceSystemTester:
 
         # Test invalid credentials
         invalid_login = {
-            "email": "sarah.johnson@school.edu",
+            "email": self.admin_user["email"],
             "password": "WrongPassword"
         }
         
