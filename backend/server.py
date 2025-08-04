@@ -353,7 +353,7 @@ async def get_attendance(class_id: str, date: str, current_user: UserResponse = 
     return result
 
 @api_router.get("/attendance/report/csv")
-async def download_attendance_csv(class_id: str, start_date: date, end_date: date, current_user: UserResponse = Depends(get_current_user)):
+async def download_attendance_csv(class_id: str, start_date: str, end_date: str, current_user: UserResponse = Depends(get_current_user)):
     # Check permissions
     class_doc = await db.classes.find_one({"id": class_id})
     if not class_doc:
