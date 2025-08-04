@@ -96,7 +96,7 @@ class Attendance(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     class_id: str
     student_id: str
-    date: date
+    date: str  # Store as string to avoid BSON serialization issues
     status: str  # "present", "absent", "late"
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
