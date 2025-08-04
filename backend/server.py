@@ -320,7 +320,7 @@ async def mark_bulk_attendance(attendance_data: AttendanceBulkCreate, current_us
     return {"message": f"Attendance marked for {len(attendance_records)} students"}
 
 @api_router.get("/attendance", response_model=List[dict])
-async def get_attendance(class_id: str, date: date, current_user: UserResponse = Depends(get_current_user)):
+async def get_attendance(class_id: str, date: str, current_user: UserResponse = Depends(get_current_user)):
     # Check permissions
     class_doc = await db.classes.find_one({"id": class_id})
     if not class_doc:
