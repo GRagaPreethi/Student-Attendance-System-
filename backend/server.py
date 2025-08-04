@@ -108,7 +108,7 @@ class AttendanceCreate(BaseModel):
 
 class AttendanceBulkCreate(BaseModel):
     class_id: str
-    date: date
+    date: str  # Store as string to avoid BSON serialization issues
     attendance_records: List[dict]  # [{"student_id": "xxx", "status": "present"}]
 
 # Helper Functions
