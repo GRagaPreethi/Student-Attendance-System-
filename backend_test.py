@@ -40,10 +40,14 @@ class AttendanceSystemTester:
         """Test user registration for both admin and teacher roles"""
         print("\n=== Testing User Registration ===")
         
+        # Generate unique emails to avoid conflicts
+        import time
+        timestamp = str(int(time.time()))
+        
         # Test admin registration
         admin_data = {
             "username": "Sarah Johnson",
-            "email": "sarah.johnson@school.edu",
+            "email": f"sarah.johnson.{timestamp}@school.edu",
             "password": "SecurePass123!",
             "role": "admin"
         }
@@ -63,7 +67,7 @@ class AttendanceSystemTester:
         # Test teacher registration
         teacher_data = {
             "username": "Michael Chen",
-            "email": "michael.chen@school.edu", 
+            "email": f"michael.chen.{timestamp}@school.edu", 
             "password": "TeacherPass456!",
             "role": "teacher"
         }
