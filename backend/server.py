@@ -103,7 +103,7 @@ class Attendance(BaseModel):
 class AttendanceCreate(BaseModel):
     class_id: str
     student_id: str
-    date: date
+    date: str  # Store as string to avoid BSON serialization issues
     status: str
 
 class AttendanceBulkCreate(BaseModel):
